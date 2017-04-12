@@ -17,12 +17,12 @@ class ValidatorController extends Controller
 {
     public static function validateEmailLogin($email, $pwd, $code)
     {
-        if (empty($code)) {
-            return ['error' => 95, 'desc' => '验证码不能为空'];
-        }
-        if (!Captcha::check($code)) {
-            return ['error' => 96, 'desc' => '验证码错误'];
-        }
+//        if (empty($code)) {
+//            return ['error' => 95, 'desc' => '验证码不能为空'];
+//        }
+//        if (!Captcha::check($code)) {
+//            return ['error' => 96, 'desc' => '验证码错误'];
+//        }
         $validator = Validator::make(
             [
                 'email' => $email,
@@ -30,15 +30,23 @@ class ValidatorController extends Controller
             ],
             [
                 'email' => 'required|email',
-                'pwd' => 'required|min:6'
+                'pwd' => 'required'//|min:6'
             ],
             [
-
+                'required' => ':attribute不能为空',
+                'email' => ':attribute格式错误',
+//                'min' => ':attribute最小长度为6'
+            ],
+            [
+                'email'=>'邮箱',
+                'pwd'=>'密码'
             ]
         );
         if ($validator->fails()) {
-            dd($validator);
-            return ['error' => 94, 'desc' => '参数错误'];
+            $warnings = $validator->messages()->toArray();
+            $desc = ['error' => 94, 'desc' => '参数错误'];
+            $result = array_merge($desc,$warnings);
+            return $result;
         }
         return true;
     }

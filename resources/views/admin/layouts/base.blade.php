@@ -126,7 +126,7 @@ desired effect
                 <h3 class="control-sidebar-heading">Recent Activity</h3>
                 <ul class="control-sidebar-menu">
                     <li>
-                        <a href="javascript::;">
+                        <a href="javascript:void(0);">
                             <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
                             <div class="menu-info">
@@ -142,7 +142,7 @@ desired effect
                 <h3 class="control-sidebar-heading">Tasks Progress</h3>
                 <ul class="control-sidebar-menu">
                     <li>
-                        <a href="javascript::;">
+                        <a href="javascript:void(0);">
                             <h4 class="control-sidebar-subheading">
                                 Custom Template Design
                                 <span class="label label-danger pull-right">70%</span>

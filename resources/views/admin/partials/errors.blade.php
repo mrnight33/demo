@@ -2,8 +2,9 @@
     <div class="alert alert-danger">
         <strong>出错了!</strong>
         <ul>
+            {{json_encode($errors)}}
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>{{ json_encode($error) }}</li>
             @endforeach
         </ul>
     </div>

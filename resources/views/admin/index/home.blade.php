@@ -38,18 +38,11 @@
             font-size: 120px;
         }
     </style>
-
-
-
-    @include('admin.partials.errors')
-    @include('admin.partials.success')
-
     <div class="container">
         <div class="content">
             <div class="title">HOME</div>
         </div>
     </div>
-
 
 @stop
 
