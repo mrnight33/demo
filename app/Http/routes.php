@@ -12,10 +12,18 @@ use Request as Input;
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('admin/login', 'Auth\TerminalController@loginByEmail');//->name('admin.login');
-Route::post('admin/login', 'Auth\TerminalController@login');
-Route::get('admin/user', 'Auth\TerminalController@show')->name('admin.user.index');
-
+Route::get('admin/login', 'Auth\UserController@loginByEmail');//->name('admin.login');
+Route::post('admin/login', 'Auth\UserController@login');
+Route::post('admin/addNewUser','Auth\UserController@addNewUser');
+Route::post('admin/deleteUser','Auth\UserController@deleteUser');
+Route::post('admin/forbiddenUser','Auth\UserController@forbiddenUser');
+Route::post('admin/getEmailCode','Auth\UserController@getEmailCode');
+Route::post('admin/checkCode','Auth\UserController@checkCode');
+Route::post('admin/resetPwd','Auth\UserController@resetPwd');
+Route::post('admin/updatePwd','Auth\UserController@updatePwd');
+Route::post('admin/logout','Auth\UserController@logout');
+//Route::get('admin/user', 'Auth\TerminalController@show')->name('admin.user.index');
+//
 // 认证路由...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -51,4 +59,27 @@ Route::any('captcha-test', function()
     $form .= '<p><button type="submit" name="check">Check</button></p>';
     $form .= '</form>';
     return $form;
+});
+Route::any('test', function()
+{
+    $form = '<form method="post" action="localhost:4000/test2">';
+//    $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+    $form .= '<p><input type="password" name="password" /></p>';
+    $form .= '<p><input type="password" name="password_confirmation" /></p>';
+    $form .= '<p><button type="submit" name="check">Check</button></p>';
+    $form .= '</form>';
+    return $form;
+});
+Route::post('test2',function(){
+        $rules = ['password'=>'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'];
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails())
+        {
+            echo '<p style="color: #ff0000;">Incorrect!</p>';
+        }
+        else
+        {
+            echo '<p style="color: #00ff30;">Matched :)</p>';
+        }
 });

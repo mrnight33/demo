@@ -19,12 +19,16 @@ class GetMenu
     public function handle($request, Closure $next)
     {
         $uri = $request->path();
-        if(strstr($uri,'login')||strstr($uri,'test')){
+        if(strstr($uri,'login')||strstr($uri,'getEmailCode')||strstr($uri,'resetPwd')||strstr($uri,'checkCode')){
             return $next($request);
         }
         echo $uri.'<br>';
         if($request->session()->has('userId')){
             $userId = $request->session()->get('userId');
+            $user = UserModel::find($userId);
+            if($user['disabled']===1){
+                return ['error'=>1,'desc'=>'用户状态出错'];
+            }
             $request->session()->put('comData_menu', $this->getMenu($userId));
             return $next($request);
         }

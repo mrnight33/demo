@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => env('MAIL_USERNAME'), 'name' => '优泊智派'],
+    'from' => ['address' => env('MAIL_USERNAME'), 'name' => '龙湖源著'],
 
     /*
     |--------------------------------------------------------------------------
