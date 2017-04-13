@@ -14,14 +14,23 @@ use Request as Input;
 */
 Route::get('admin/login', 'Auth\UserController@loginByEmail');//->name('admin.login');
 Route::post('admin/login', 'Auth\UserController@login');
-Route::post('admin/addNewUser','Auth\UserController@addNewUser');
-Route::post('admin/deleteUser','Auth\UserController@deleteUser');
-Route::post('admin/forbiddenUser','Auth\UserController@forbiddenUser');
-Route::post('admin/getEmailCode','Auth\UserController@getEmailCode');
+Route::post('admin/addNew','Auth\UserController@addNewUser');
+Route::post('admin/delete','Auth\UserController@deleteUser');
+Route::post('admin/forbidden','Auth\UserController@forbiddenUser');
+Route::post('admin/getEmail','Auth\UserController@getEmailCode');
 Route::post('admin/checkCode','Auth\UserController@checkCode');
 Route::post('admin/resetPwd','Auth\UserController@resetPwd');
 Route::post('admin/updatePwd','Auth\UserController@updatePwd');
 Route::post('admin/logout','Auth\UserController@logout');
+
+Route::post('cross/addNew','Auth\InletOutletController@addNewInletAndOutlet');
+Route::get('cross/addNew','Auth\InletOutletController@addNewCross');
+Route::post('cross/getInfo','Auth\InletOutletController@getInletAndOutletInfo');
+Route::get('cross/index','Auth\InletOutletController@index');
+Route::post('cross/update','Auth\InletOutletController@updateInletAndOutlet');
+Route::post('cross/updateTime','Auth\InletOutletController@setOpenAndCloseTime');
+Route::post('cross/setStatus','Auth\InletOutletController@setStatus');
+
 //Route::get('admin/user', 'Auth\TerminalController@show')->name('admin.user.index');
 //
 // 认证路由...

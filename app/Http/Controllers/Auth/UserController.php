@@ -29,7 +29,7 @@ class UserController extends Controller
         $email = Request::input('email');
         $pwd = Request::input('pwd');
         $code = Request::input('code');
-        $message = ValidatorController::validateEmailLogin($email,$pwd,$code);
+        $message = UserValidatorController::validateEmailLogin($email,$pwd,$code);
         if($message!==true){
             return $message;
             //return view('admin.auth.login')->with($message);
@@ -114,7 +114,7 @@ class UserController extends Controller
     //获取邮箱验证码,跳转到输入验证码,页面输入retakeMethod区分重置和修改，email
     public function getEmailCode(){
         $email = Request::input('email');
-        $message = ValidatorController::validateEmail($email);
+        $message = UserValidatorController::validateEmail($email);
         if($message!==true){
             return $message;
         }
@@ -151,7 +151,7 @@ class UserController extends Controller
     //验证邮箱验证码,跳转到输入密码,页面输入retakeMethod区分重置和修改
     public function checkCode(){
         $code = Request::input('code');
-        $message = ValidatorController::validateCode($code);
+        $message = UserValidatorController::validateCode($code);
         if($message!==true){
             return $message;
         }
@@ -173,7 +173,7 @@ class UserController extends Controller
     public function resetPwd(){
         $pwd = Request::input('pwd');
         $rePwd = Request::input('rePwd');
-        $message = ValidatorController::validateBothPwd($pwd,$rePwd);
+        $message = UserValidatorController::validateBothPwd($pwd,$rePwd);
         if($message!==true){
             return $message;
         }
@@ -208,7 +208,7 @@ class UserController extends Controller
         $email = Session::get('email');
         $pwd = Request::input('pwd');
         $rePwd = Request::input('rePwd');
-        $message = ValidatorController::validateBothPwd($pwd,$rePwd);
+        $message = UserValidatorController::validateBothPwd($pwd,$rePwd);
         if($message!==true){
             return $message;
         }
@@ -247,7 +247,7 @@ class UserController extends Controller
         $name = Request::input('name');
         $pwd = Request::input('pwd');
         $rePwd = Request::input('rePwd');
-        $message = ValidatorController::validateAddUser($email,$name,$pwd,$rePwd);
+        $message = UserValidatorController::validateAddUser($email,$name,$pwd,$rePwd);
         if($message!==true){
             return $message;
         }

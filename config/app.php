@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +165,7 @@ return [
         //log
         // Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
-
+//
     ],
 
     /*
